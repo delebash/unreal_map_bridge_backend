@@ -14,11 +14,11 @@
   "scripts": {
     "start": "node app.js",
     "build": "ncc build app.js -o dist",
-    "compile": "npx pkg -t win ./dist/index.js -o dist/unreal_mapbor_bridge_backend",
+    "compile": "npx pkg -t win ./dist/index.js -o dist/unreal_map_bridge_backend",
     "dist": "npm run build & npm run compile"
   },
   "keywords": [],
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
