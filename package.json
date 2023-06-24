@@ -1,7 +1,14 @@
 {
-  "name": "unreal_mapbox_bridge_backend",
-  "version": "1.0.1",
-  "description": "",
+  "name": "unreal_map_bridge_backend",
+  "version": "1.0.0",
+  "description": "Import real world locations into Unreal using Mapbox or Maptiler",
+  "productName": "Unreal Mapbox Bridge",
+  "author": "Daniel Elebash <danelebash@hotmail.com>",
+  "homepage": "https://github.com/delebash/unreal_map_bridge_backend",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/delebash/unreal_map_bridge_backend"
+  },
   "bin": "app.js",
   "main": "app.js",
   "scripts": {
@@ -11,7 +18,6 @@
     "dist": "npm run build & npm run compile"
   },
   "keywords": [],
-  "author": "Daniel Elebash",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
