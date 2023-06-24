@@ -5,13 +5,13 @@ const {combineTilesJimp} = require('./combine-tiles.js')
 const bodyParser = require('body-parser')
 const SSE = require('express-sse')
 const app = express()
-
+const PORT = '3000'
 const sse = new SSE([]);
 app.use(cors());
 app.use(bodyParser.json({limit: '20000mb'}));
 app.use(bodyParser.urlencoded({extended: true}))
 
-async function run() {
+async function start() {
     app.post('/backend', rescue(async (req, res, next) => {
         let tiles = await req.body
         try {
@@ -38,11 +38,11 @@ async function run() {
 
     //hosting on namecheap do not specify port
     // app.listen()
-    app.listen(3000, () => {
-        console.log(`server listening at http://localhost:3000/backend`)
+    app.listen(PORT, () => {
+        console.log(`server listening at http://localhost:${PORT}/backend`)
     })
 
 }
 
-run()
+start()
 
