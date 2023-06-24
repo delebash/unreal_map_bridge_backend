@@ -1,4 +1,4 @@
-# Backend Server fro Unreal Map Bridge 
+# Backend Server for Unreal Map Bridge 
 
 #### Use real world heightmap data from Mapbox or Maptiler and automatically convert it to an Unreal heightmap image
 
