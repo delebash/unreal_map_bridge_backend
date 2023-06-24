@@ -1,0 +1,27 @@
+{
+  "name": "unreal_mapbox_bridge_backend",
+  "version": "1.0.1",
+  "description": "",
+  "bin": "app.js",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "build": "ncc build app.js -o dist",
+    "compile": "npx pkg -t win ./dist/index.js -o dist/unreal_mapbor_bridge_backend",
+    "dist": "npm run build & npm run compile"
+  },
+  "keywords": [],
+  "author": "Daniel Elebash",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rescue": "^1.2.0",
+    "express-sse": "^0.5.3",
+    "jimp": "^0.22.8",
+    "lodash-es": "^4.17.21",
+    "uuid": "^9.0.0"
+  }
+}
