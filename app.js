@@ -1,18 +1,13 @@
-import express from 'express';
-import rescue from 'express-rescue'
-import cors from 'cors'
-import combineTiles from './combine-tiles.js'
-import bodyParser from 'body-parser'
-
+const express = require('express');
+const rescue = require('express-rescue')
+const cors = require('cors')
+const {combineTilesJimp} = require('./combine-tiles.js')
+const bodyParser = require('body-parser')
+const SSE = require('express-sse')
 const app = express()
-import SSE from 'express-sse'
 
 const sse = new SSE([]);
-// const {v4: uuidv4} = require('uuid');
-
 app.use(cors());
-const port = 3000
-
 app.use(bodyParser.json({limit: '20000mb'}));
 app.use(bodyParser.urlencoded({extended: true}))
 
@@ -24,7 +19,7 @@ async function run() {
                 tile.buffer = Buffer.from(tile.buffer, 'base64');
             }
             const size = 512
-            let imageBuffer = await combineTiles(tiles.tiles, size, size, sse)
+            let imageBuffer = await combineTilesJimp(tiles.tiles, size, size, sse)
 
             res.send(Buffer.from(imageBuffer))
             res.end();
@@ -41,10 +36,13 @@ async function run() {
 
     app.get('/events', sse.init);
 
-    app.listen(port, () => {
-        console.log(`server listening at http://localhost:${port}/backend`)
+    //hosting on namecheap do not specify port
+    // app.listen()
+    app.listen(3000, () => {
+        console.log(`server listening at http://localhost:3000/backend`)
     })
 
 }
 
 run()
+

@@ -1,10 +1,10 @@
-'use strict'
-
-import {minBy, maxBy, sortBy} from 'lodash-es';
-import Jimp from 'jimp';
+const minBy = require('lodash/minBy');
+const maxBy = require('lodash/maxBy');
+const sortBy = require('lodash/sortBy');
+const Jimp = require('jimp')
 let totalCount = 0
-export default async function combineTilesJimp(tiles, tWidth, tHeight, sse) {
 
+async function combineTilesJimp(tiles, tWidth, tHeight, sse) {
     totalCount = tiles.length
     const offsetX = minBy(tiles, tile => tile.x).x
     const offsetY = minBy(tiles, tile => tile.y).y
@@ -21,7 +21,6 @@ export default async function combineTilesJimp(tiles, tWidth, tHeight, sse) {
     const w = tWidth * cols
     const h = tHeight * rows
 
-
     let image = await Jimp.read(Buffer.from(index[0].buffer))
     image.background(0xFFFFFFFF)
     image.resize(w, h);
@@ -33,7 +32,6 @@ export default async function combineTilesJimp(tiles, tWidth, tHeight, sse) {
 
 }
 
-
 async function CompositeImg(image, index, tHeight, tWidth, sse) {
     try {
         let count = 1
@@ -44,7 +42,7 @@ async function CompositeImg(image, index, tHeight, tWidth, sse) {
             let newImage = await Jimp.read(buffer)
             image.composite(newImage, x, y)
             try {
-                    sse.send({count:count,totalCount:totalCount});
+                sse.send({count: count, totalCount: totalCount});
             } catch (e) {
             }
             count++
@@ -54,4 +52,6 @@ async function CompositeImg(image, index, tHeight, tWidth, sse) {
         console.log(e)
     }
 }
+
+module.exports = {combineTilesJimp}
 
